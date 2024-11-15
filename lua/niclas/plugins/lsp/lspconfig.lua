@@ -104,16 +104,28 @@ return {
 					},
 				})
 			end,
-			["pyright"] = function()
-				-- configure python server
-				lspconfig["pyright"].setup({
+			-- ["pyright"] = function()
+			-- 	-- configure python server
+			-- 	lspconfig["pyright"].setup({
+			-- 		capabilities = capabilities,
+			-- 		on_attach = on_attach,
+			-- 		-- settings = {
+			-- 		-- 	python = {
+			-- 		-- 		pythonPath = vim.fn.exepath("python"),
+			-- 		-- 	},
+			-- 		-- },
+			-- 	})
+			-- end,
+			["ruff"] = function()
+				lspconfig["ruff"].setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
-					-- settings = {
-					-- 	python = {
-					-- 		pythonPath = vim.fn.exepath("python"),
-					-- 	},
-					-- },
+					init_options = {
+						settings = {
+							-- Ruff language server settings go here
+							configurationPreference = "filesystemFirst",
+						},
+					},
 				})
 			end,
 		})
