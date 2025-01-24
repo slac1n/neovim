@@ -104,18 +104,18 @@ return {
 					},
 				})
 			end,
-			["basedpyright"] = function()
-				-- configure python server
-				lspconfig["basedpyright"].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-					-- settings = {
-					-- 	python = {
-					-- 		pythonPath = vim.fn.exepath("python"),
-					-- 	},
-					-- },
-				})
-			end,
+			-- ["basedpyright"] = function()
+			-- 	-- configure python server
+			-- 	lspconfig["basedpyright"].setup({
+			-- 		capabilities = capabilities,
+			-- 		on_attach = on_attach,
+			-- 		-- settings = {
+			-- 		-- 	python = {
+			-- 		-- 		pythonPath = vim.fn.exepath("python"),
+			-- 		-- 	},
+			-- 		-- },
+			-- 	})
+			-- end,
 			["ruff"] = function()
 				lspconfig["ruff"].setup({
 					capabilities = capabilities,
