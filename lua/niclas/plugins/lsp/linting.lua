@@ -1,12 +1,12 @@
 return {
 	"mfussenegger/nvim-lint",
-	enabled = false,
+	enabled = True,
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require("lint")
 
 		lint.linters_by_ft = {
-			python = { "pylint" },
+			python = { "mypy", "ruff" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
