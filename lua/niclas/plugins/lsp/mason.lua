@@ -30,12 +30,13 @@ return {
 				"ruff",
 				"marksman",
 				"ltex",
+				"jedi_language_server",
 			},
 		})
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"prettier", -- prettier formatter
+				-- "prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"mypy",
 				-- "isort", -- python formatter
