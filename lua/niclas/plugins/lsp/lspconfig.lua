@@ -128,6 +128,32 @@ return {
 					},
 				})
 			end,
+			["omnisharp"] = function()
+				-- configure omnisharp server
+				lspconfig["omnisharp"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					cmd = {
+						"omnisharp",
+						"--languageserver",
+						"--hostPID",
+						tostring(vim.fn.getpid()),
+					},
+					settings = {
+						RoslynExtensionsOptions = {
+							enableDecompilationSupport = false,
+							enableImportCompletion = true,
+							enableAnalyzersSupport = true,
+						},
+					},
+					root_dir = function(fname)
+						local lspconfig = require("lspconfig")
+						local primary = lspconfig.util.root_pattern("*.sln")(fname)
+						local fallback = lspconfig.util.root_pattern("*.csproj")(fname)
+						return primary or fallback
+					end,
+				})
+			end,
 		})
 	end,
 }

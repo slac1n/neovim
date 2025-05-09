@@ -31,6 +31,7 @@ return {
 				"marksman",
 				"ltex",
 				"jedi_language_server",
+				"omnisharp",
 			},
 		})
 
