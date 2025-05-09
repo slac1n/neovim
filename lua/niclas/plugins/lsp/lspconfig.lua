@@ -145,6 +145,9 @@ return {
 							enableImportCompletion = true,
 							enableAnalyzersSupport = true,
 						},
+						FormattingOptions = {
+							OrganizeImports = true,
+						},
 					},
 					root_dir = function(fname)
 						local lspconfig = require("lspconfig")
