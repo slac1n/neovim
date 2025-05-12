@@ -11,6 +11,14 @@ return {
 				-- markdown = { "prettier" },
 				lua = { "stylua" },
 				python = { "ruff_format" },
+				cs = { "csharpier" },
+			},
+			formatters = {
+				csharpier = {
+					command = "csharpier",
+					args = { "format" },
+					stdin = true,
+				},
 			},
 			format_on_save = {
 				lsp_fallback = true,
