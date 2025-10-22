@@ -7,9 +7,6 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
-
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
 
@@ -81,20 +78,20 @@ return {
 		mason_lspconfig.setup_handlers({
 			-- default handler for installed servers
 			function(server_name)
-				lspconfig[server_name].setup({
+				vim.lsp.config(server_name, {
 					capabilities = capabilities,
 				})
 			end,
 			["marksman"] = function()
 				-- configure markdown server
-				lspconfig["marksman"].setup({
+				vim.lsp.config("marksman", {
 					capabilities = capabilities,
 					on_attach = on_attach,
 				})
 			end,
 			["ltex"] = function()
 				-- configure latex server
-				lspconfig["ltex"].setup({
+				vim.lsp.config("ltex", {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					settings = {
@@ -117,7 +114,7 @@ return {
 			-- 	})
 			-- end,
 			["ruff"] = function()
-				lspconfig["ruff"].setup({
+				vim.lsp.config("ruff", {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					init_options = {
@@ -130,7 +127,7 @@ return {
 			end,
 			["omnisharp"] = function()
 				-- configure omnisharp server
-				lspconfig["omnisharp"].setup({
+				vim.lsp.config("omnisharp", {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					cmd = {
