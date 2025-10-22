@@ -75,85 +75,58 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				vim.lsp.config(server_name, {
-					capabilities = capabilities,
-				})
-			end,
-			["marksman"] = function()
-				-- configure markdown server
-				vim.lsp.config("marksman", {
-					capabilities = capabilities,
-					on_attach = on_attach,
-				})
-			end,
-			["ltex"] = function()
-				-- configure latex server
-				vim.lsp.config("ltex", {
-					capabilities = capabilities,
-					on_attach = on_attach,
-					settings = {
-						ltex = {
-							language = "auto", -- Replace "en" with the appropriate language code
-						},
-					},
-				})
-			end,
-			-- ["basedpyright"] = function()
-			-- 	-- configure python server
-			-- 	lspconfig["basedpyright"].setup({
-			-- 		capabilities = capabilities,
-			-- 		on_attach = on_attach,
-			-- 		-- settings = {
-			-- 		-- 	python = {
-			-- 		-- 		pythonPath = vim.fn.exepath("python"),
-			-- 		-- 	},
-			-- 		-- },
-			-- 	})
-			-- end,
-			["ruff"] = function()
-				vim.lsp.config("ruff", {
-					capabilities = capabilities,
-					on_attach = on_attach,
-					init_options = {
+		mason_lspconfig.setup({
+			handlers = {
+				-- default handler for installed servers
+				function(server_name)
+					vim.lsp.config(server_name, {
+						capabilities = capabilities,
+					})
+				end,
+				["marksman"] = function()
+					-- configure markdown server
+					vim.lsp.config("marksman", {
+						capabilities = capabilities,
+						on_attach = on_attach,
+					})
+				end,
+				["ltex"] = function()
+					-- configure latex server
+					vim.lsp.config("ltex", {
+						capabilities = capabilities,
+						on_attach = on_attach,
 						settings = {
-							-- Ruff language server settings go here
-							configurationPreference = "filesystemFirst",
+							ltex = {
+								language = "auto", -- Replace "en" with the appropriate language code
+							},
 						},
-					},
-				})
-			end,
-			["omnisharp"] = function()
-				-- configure omnisharp server
-				vim.lsp.config("omnisharp", {
-					capabilities = capabilities,
-					on_attach = on_attach,
-					cmd = {
-						"omnisharp",
-						"--languageserver",
-						"--hostPID",
-						tostring(vim.fn.getpid()),
-					},
-					settings = {
-						RoslynExtensionsOptions = {
-							enableDecompilationSupport = false,
-							enableImportCompletion = true,
-							enableAnalyzersSupport = true,
+					})
+				end,
+				-- ["basedpyright"] = function()
+				-- 	-- configure python server
+				-- 	lspconfig["basedpyright"].setup({
+				-- 		capabilities = capabilities,
+				-- 		on_attach = on_attach,
+				-- 		-- settings = {
+				-- 		-- 	python = {
+				-- 		-- 		pythonPath = vim.fn.exepath("python"),
+				-- 		-- 	},
+				-- 		-- },
+				-- 	})
+				-- end,
+				["ruff"] = function()
+					vim.lsp.config("ruff", {
+						capabilities = capabilities,
+						on_attach = on_attach,
+						init_options = {
+							settings = {
+								-- Ruff language server settings go here
+								configurationPreference = "filesystemFirst",
+							},
 						},
-						FormattingOptions = {
-							OrganizeImports = true,
-						},
-					},
-					root_dir = function(fname)
-						local lspconfig = require("lspconfig")
-						local primary = lspconfig.util.root_pattern("*.sln")(fname)
-						local fallback = lspconfig.util.root_pattern("*.csproj")(fname)
-						return primary or fallback
-					end,
-				})
-			end,
+					})
+				end,
+			},
 		})
 	end,
 }
