@@ -102,18 +102,23 @@ return {
 						},
 					})
 				end,
-				-- ["basedpyright"] = function()
-				-- 	-- configure python server
-				-- 	lspconfig["basedpyright"].setup({
-				-- 		capabilities = capabilities,
-				-- 		on_attach = on_attach,
-				-- 		-- settings = {
-				-- 		-- 	python = {
-				-- 		-- 		pythonPath = vim.fn.exepath("python"),
-				-- 		-- 	},
-				-- 		-- },
-				-- 	})
-				-- end,
+				["basedpyright"] = function()
+					-- configure python server
+					vim.lsp.config("basedpyright", {
+						capabilities = capabilities,
+						on_attach = on_attach,
+						settings = {
+							python = {
+								analysis = {
+									autoSearchPaths = true,
+									useLibraryCodeForTypes = true,
+									diagnosticMode = "workspace",
+									typeCheckingMode = "off",
+								},
+							},
+						},
+					})
+				end,
 				["ruff"] = function()
 					vim.lsp.config("ruff", {
 						capabilities = capabilities,
@@ -126,6 +131,19 @@ return {
 						},
 					})
 				end,
+				-- ["jedi_language_server"] = function()
+				-- 	vim.lsp.config("jedi_language_server", {
+				-- 		capabilities = capabilities,
+				-- 		on_attach = on_attach,
+				-- 		settings = {
+				-- 			jedi = {
+				-- 				workspace = {
+				-- 					extraPaths = { vim.fn.getcwd() .. "/src" }, -- add your src folder to sys.path
+				-- 				},
+				-- 			},
+				-- 		},
+				-- 	})
+				-- end,
 			},
 		})
 	end,
